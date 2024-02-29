@@ -7,6 +7,16 @@ pub enum PAGE_TYPE {
     ERROR,
 }
 
+/// Public facing function for rendering the TUI
+///
+/// # Arguments
+///
+/// * 'frame' - An instance of a Ratatui frame
+/// * 'page_type' - An instance of the PAGE_TYPE enum defining the type of page to be rendered
+///
+/// # Returns
+///
+/// * No return
 pub fn render(frame: &mut Frame, page_type: PAGE_TYPE) {
     match page_type {
         PAGE_TYPE::INDEX => index(frame),
@@ -21,7 +31,7 @@ pub fn render(frame: &mut Frame, page_type: PAGE_TYPE) {
 ///
 /// # Arguments
 ///
-/// * 'frame' - An instance of a Rratatui frame
+/// * 'frame' - An instance of a Ratatui frame
 ///
 /// # Returns
 ///
@@ -50,14 +60,41 @@ pub fn index(frame: &mut Frame) {
     frame.render_widget(Paragraph::new(":"), frame.size())
 }
 
+/// Renders the landing page
+///
+/// # Arguments
+///
+/// * 'frame' - An instance of a Ratatui frame
+///
+/// # Returns
+///
+/// * No Return
 pub fn landing(frame: &mut Frame) {
     unimplemented!("This route hasn't been implemented")
 }
 
+/// Renders a web page
+///
+/// # Arguments
+///
+/// * 'frame' - An instance of a Ratatui frame
+///
+/// # Returns
+///
+/// * No Return
 pub fn page(frame: &mut Frame) {
     unimplemented!("This route hasn't been implemented")
 }
 
+/// Renders an error page
+///
+/// # Arguments
+///
+/// * 'frame' - An instance of a Ratatui frame
+///
+/// # Returns
+///
+/// * No Return
 pub fn error(frame: &mut Frame) {
     unimplemented!("This route hasn't been implemented")
 }
