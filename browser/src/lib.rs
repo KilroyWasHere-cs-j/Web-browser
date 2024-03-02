@@ -10,8 +10,16 @@ pub enum Mode {
     INSERT,
 }
 
-pub fn render_frame(frame: &mut Frame) {
-    render::render(frame, render::PAGE_TYPE::INDEX);
+pub fn render_main_frame(frame: &mut Frame, html: String) {
+    render::render(frame, render::PAGE_TYPE::INDEX, html);
+}
+
+pub fn render_frame(frame: &mut Frame, page_type: render::PAGE_TYPE, html: String) {
+    render::render(frame, page_type, html)
+}
+
+fn clear() {
+    print!("\x1B[2J");
 }
 
 pub struct Browser {
@@ -31,17 +39,26 @@ impl Browser {
         }
     }
 
+    pub fn navigate_to_url(&mut self, url: String) {
+        println!("{}", self.query(url));
+    }
+
     pub fn navigate_home(&mut self) {
         println!("{}", self.query(self.index.clone()));
     }
 
-    pub fn set_mode(&mut self, mode: Mode) {
-        self.mode = mode;
+    pub fn set_url(&mut self, url: String) {
+        self.query = url
     }
 
+    // TODO make this return a Result
     fn query(&mut self, url: String) -> String {
         let resp = reqwest::blocking::get(url).unwrap().text().unwrap();
-        return resp;
+        return resp.to_string();
+    }
+
+    pub fn set_mode(&mut self, mode: Mode) {
+        self.mode = mode;
     }
 
     fn display(&mut self) {}

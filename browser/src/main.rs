@@ -35,10 +35,11 @@ fn process_command(b: &mut browser::Browser, cmds: &mut Vec<String>) {
     let cmd = cmds.join("");
     cmds.clear();
 
-    if cmd.contains("home") {
+    if cmd.contains("h") {
         b.navigate_home();
-    } else if cmd.contains("search") {
-        print!("Would return home here");
+    } else if cmd.contains("s") {
+        b.set_url("Hello World!1".to_string());
+        b.navigate_to_url("https://www.google.com/".to_string());
     } else {
         print!("There was an error with command: {}", cmd);
     }
@@ -64,15 +65,15 @@ fn handle_events(b: &mut browser::Browser, cmd: &mut Vec<String>) -> io::Result<
                             return Ok(true);
                         }
                         KeyCode::Char('v') => {
-                            &b.set_mode(browser::Mode::VISUAL);
+                            let _ = &b.set_mode(browser::Mode::VISUAL);
                             return Ok(false);
                         }
                         KeyCode::Char('i') => {
-                            &b.set_mode(browser::Mode::INSERT);
+                            let _ = &b.set_mode(browser::Mode::INSERT);
                             return Ok(false);
                         }
                         KeyCode::Char('c') => {
-                            &b.set_mode(browser::Mode::COMMAND);
+                            let _ = &b.set_mode(browser::Mode::COMMAND);
                             return Ok(false);
                         }
                         // No matching key was pressed for ctrl
@@ -96,5 +97,6 @@ fn handle_events(b: &mut browser::Browser, cmd: &mut Vec<String>) -> io::Result<
 }
 
 fn ui(frame: &mut Frame) {
-    browser::render_frame(frame)
+    let html = "".to_string();
+    browser::render_main_frame(frame, html)
 }

@@ -17,12 +17,12 @@ pub enum PAGE_TYPE {
 /// # Returns
 ///
 /// * No return
-pub fn render(frame: &mut Frame, page_type: PAGE_TYPE) {
+pub fn render(frame: &mut Frame, page_type: PAGE_TYPE, html: String) {
     match page_type {
         PAGE_TYPE::INDEX => index(frame),
-        PAGE_TYPE::LANDING => landing(frame),
-        PAGE_TYPE::PAGE => page(frame),
-        PAGE_TYPE::ERROR => error(frame),
+        PAGE_TYPE::LANDING => landing(frame, html),
+        PAGE_TYPE::PAGE => page(frame, html),
+        PAGE_TYPE::ERROR => error(frame, html),
         _ => println!("Invalid Render Route"),
     }
 }
@@ -69,7 +69,7 @@ pub fn index(frame: &mut Frame) {
 /// # Returns
 ///
 /// * No Return
-pub fn landing(frame: &mut Frame) {
+pub fn landing(frame: &mut Frame, html: String) {
     unimplemented!("This route hasn't been implemented")
 }
 
@@ -82,7 +82,7 @@ pub fn landing(frame: &mut Frame) {
 /// # Returns
 ///
 /// * No Return
-pub fn page(frame: &mut Frame) {
+pub fn page(frame: &mut Frame, html: String) {
     unimplemented!("This route hasn't been implemented")
 }
 
@@ -95,6 +95,6 @@ pub fn page(frame: &mut Frame) {
 /// # Returns
 ///
 /// * No Return
-pub fn error(frame: &mut Frame) {
+pub fn error(frame: &mut Frame, html: String) {
     unimplemented!("This route hasn't been implemented")
 }
