@@ -1,2 +1,2 @@
-# Web-browser
-A basic text based web-brower in Rust
+# NAB
+Is a basic text based web-browser written in Rust with Vim like key-bindings.
